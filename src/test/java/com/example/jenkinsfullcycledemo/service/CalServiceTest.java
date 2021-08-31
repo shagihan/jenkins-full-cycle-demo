@@ -40,7 +40,7 @@ class CalServiceTest {
 
     @Test
     void divideInt() {
-        double expected = 0.008;
+        double expected = 0.08;
         double actual = calService.divideInt(B, A);
         assertEquals(expected, actual, "Test failed for CalService.divideInt");
     }
