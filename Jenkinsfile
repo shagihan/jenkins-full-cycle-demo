@@ -12,6 +12,7 @@ pipeline {
             }
 
         }
+
         stage('UnitTest') {
             steps {
                 echo 'Running unit tests...'
@@ -20,18 +21,27 @@ pipeline {
                 }
             }
         }
+
         stage('FunctionalityTest') {
-            steps {
-                echo 'Running functionality tests...'
-                parallel(
-                      serverStart: {
+            parallel {
+                stage('Starting spring app...') {
+                    steps {
                         sh "java -jar target/jenkins-full-cycle-demo-0.0.1-SNAPSHOT.jar"
-                      },
-                      npmTest: {
+                    }
+                }
+                stage('Running tests...') {
+                    steps {
                         sleep(time:15, unit:"SECONDS")
-                        sh "npm test"
-                      }
-                    )
+                        script {
+                            try {
+                                sh "npm test"
+                                currentBuild.result = "SUCCESS"
+                            } catch(Exception e) {
+                                currentBuild.result = "FAILURE"
+                            }
+                        }
+                    }
+                }
             }
         }
     }

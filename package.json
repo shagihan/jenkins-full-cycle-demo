@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "newman run calCollection.postman_collection.json --reporters cli"
+    "test": "newman run calCollection.postman_collection.json --reporters cli,junit --reporter-junit-export newman.xml"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "newman": "^5.2.4"
+    "newman": "^5.2.4",
+    "newman-reporter-junitfull": "^1.1.1"
   }
 }
