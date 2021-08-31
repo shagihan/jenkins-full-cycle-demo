@@ -1,0 +1,14 @@
+{
+  "name": "cal-postman-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run calCollection.postman_collection.json --reporters cli"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "newman": "^5.2.4"
+  }
+}
